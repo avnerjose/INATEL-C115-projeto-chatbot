@@ -1,0 +1,20 @@
+.chat-message-container {
+  padding: 1rem 0.6rem;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background: #067cfa;
+  align-self: flex-end;
+  border-radius: 10px 10px 0px 10px;
+  color: white;
+
+  &.server {
+    background: #f5f7f8;
+    color: black;
+    align-self: flex-start;
+    border-radius: 10px 10px 10px 0px;
+  }
+
+  & + &,
+  .possible-answers-wrapper + & {
+    margin-top: 0.5rem;
+  }
+}

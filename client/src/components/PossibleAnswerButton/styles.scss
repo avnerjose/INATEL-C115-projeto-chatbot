@@ -1,0 +1,17 @@
+.possible-answer-container {
+  align-self: start;
+  padding: 0.5rem;
+  border-radius: 14px;
+  border: 2px solid #067cfa;
+  background: white;
+  font-size: 1rem;
+  color: #067cfa;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  &:hover {
+    background: #067cfa;
+    color: white;
+    transform: translateY(-2px);
+  }
+}
