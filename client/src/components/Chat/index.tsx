@@ -12,9 +12,6 @@ type ChatMessage = {
   isAnswered: boolean;
 };
 
-//1604
-//1607
-
 type CustomError = {
   response: {
     data: {
@@ -25,18 +22,19 @@ type CustomError = {
 
 //Componente que cria o chat na tela
 export function Chat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);//Vetor com as mensagens que serão exibidas no chat
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(-1);//Índice da mensagem atual
+  const [messages, setMessages] = useState<ChatMessage[]>([]); //Vetor com as mensagens que serão exibidas no chat
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(-1); //Índice da mensagem atual
   const [serverMessagesCount, setServerMessagesCount] = useState(0); //Contador de mensagens do servidor
   const [userMessage, setUserMessage] = useState(""); //Mensagem que o usuário digita no input
-  const [chatData, setChatData] = useState<{ //Dados que serão enviados para o servidor
+  const [chatData, setChatData] = useState<{
+    //Dados que serão enviados para o servidor
     matricula: string | number;
     materia: number;
     nota: number;
   }>({
     matricula: "",
-    materia: 0,
-    nota: 0,
+    materia: -1,
+    nota: -1,
   });
   const ref = useRef<HTMLDivElement>(null); //Referência para o elemento div que contém as mensagens
 
@@ -65,10 +63,10 @@ export function Chat() {
       const url = `http://0.0.0.0:7999/chatbot/${serverMessagesCount}?`;
       const customParams = new URLSearchParams();
 
-      materia > 0 && customParams.append("materia", materia.toString());
+      materia !== -1 && customParams.append("materia", materia.toString());
       matricula !== "" &&
         customParams.append("matricula", matricula.toString());
-      nota > 0 && customParams.append("nota", nota.toString());
+      nota !== -1 && customParams.append("nota", nota.toString());
 
       const res = await axios.post<{
         id: number;
